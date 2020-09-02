@@ -2,16 +2,16 @@
 
 ## users テーブル
 
-| Column      | Type    | Options      |
-| ------------| --------| -------------|
-| nickname    | string  | null: false, |
-| email       | string  | null: false, |
-| password    | string  | null: false, |
-| name        | string  | null: false, |
-| cananame    | string  | null: false, |
-| year_id     | integer | null: false, |
-| month_id    | integer | null: false, |
-| birthday_id | integer | null: false, |
+| Column         | Type    | Options      |
+| ---------------| --------| -------------|
+| nickname       | string  | null: false, |
+| email          | string  | null: false, |
+| password       | string  | null: false, |
+| firstname      | string  | null: false, |
+| lastname       | string  | null: false, |
+| cana_firstname | string  | null: false, |
+| cana_lastname  | string  | null: false, |
+| birthday       | integer | null: false, |
 
 ### Association
 - has_many :items
@@ -21,9 +21,9 @@
 
 | Column      | Type    | Options      |
 | ------------| --------| -------------|
-| itemname    | string  | null: false, |
-| itemexp     | text    | null: false, |
-| itemimg     | string  | null: false, |
+| name        | string  | null: false, |
+| explation   | text    | null: false, |
+| image       | string  | null: false, |
 | price       | integer | null: false, |
 | fee         | integer | null: false, |
 | profit      | integer | null: false, |
@@ -39,12 +39,12 @@
 
 | Column      | Type    | Options      |
 | ------------| --------| -------------|
-| postalcode  | integer | null: false, |
+| postalcode  | string  | null: false, |
 | pref_id     | integer | null: false, |
 | city        | string  | null: false, |
 | address     | string  | null: false, |
-| buldname    | integer | |
-| tel         | integer | null: false, |
+| buldname    | integer |              |
+| tel         | string  | null: false, |
 | user_id     | integer | null: false, |
 | item_id     | integer | null: false, |
 
@@ -52,3 +52,14 @@
 - belongs_to :users
 - belongs_to :consumers
 
+
+## users_items テーブル
+
+| Column      | Type    | Options      |
+| ------------| --------| -------------|
+| user_id     | integer | null: false, |
+| item_id     | integer | null: false, |
+
+### Association
+- belongs_to :users
+- belongs_to :items
