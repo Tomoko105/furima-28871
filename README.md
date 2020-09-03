@@ -9,8 +9,8 @@
 | password       | string  | null: false, |
 | firstname      | string  | null: false, |
 | lastname       | string  | null: false, |
-| cana_firstname | string  | null: false, |
-| cana_lastname  | string  | null: false, |
+| kana_firstname | string  | null: false, |
+| kana_lastname  | string  | null: false, |
 | birthday       | date    | null: false, |
 
 ### Association
@@ -32,7 +32,8 @@
 | user        | references | null: false, foreign_key: true |
 
 ### Association
-- belongs_to :user
+- has_many :users_items
+- has_many :users,through:users_items
 
 ## consumers テーブル
 
@@ -48,8 +49,8 @@
 
 
 ### Association
-- belongs_to :user
-- belongs_to :item
+- has_many :users_items
+- has_many :items,through:users_items
 
 
 ## users_items テーブル
