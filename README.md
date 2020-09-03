@@ -14,8 +14,8 @@
 | birthday       | date    | null: false, |
 
 ### Association
-- has_many :items
-- has_many :consumers
+- has_many :users_items
+- has_many :items,through:users_items
 
 ## items テーブル
 
@@ -29,11 +29,10 @@
 | status_id   | integer    | null: false,                   |
 | pref_id     | integer    | null: false,                   |
 | ship_id     | integer    | null: false,                   |
-| user_id     | references | null: false, foreign_key: true |
+| user        | references | null: false, foreign_key: true |
 
 ### Association
-- belongs_to :users
-- has_one :consumers
+- belongs_to :user
 
 ## consumers テーブル
 
@@ -45,21 +44,22 @@
 | address     | string     | null: false,                   |
 | buldname    | string     |                                |
 | tel         | string     | null: false,                   |
-| user_id     | references | null: false, foreign_key: true |
-| item_id     | references | null: false, foreign_key: true |
+| users_item  | references | null: false, foreign_key: true |
+
 
 ### Association
-- belongs_to :users
-- belongs_to :consumers
+- belongs_to :user
+- belongs_to :item
 
 
 ## users_items テーブル
 
 | Column      | Type       | Options                        |
 | ------------| -----------| -------------------------------|
-| user_id     | references | null: false, foreign_key: true |
-| item_id     | references | null: false, foreign_key: true |
+| user        | references | null: false, foreign_key: true |
+| item        | references | null: false, foreign_key: true |
 
 ### Association
-- belongs_to :users
-- belongs_to :items
+- belongs_to :user
+- belongs_to :item
+- has_one : consumer
