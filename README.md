@@ -15,7 +15,7 @@
 
 ### Association
 - has_many :users_items
-- has_many :items,through:users_items
+- has_many :items
 
 ## items テーブル
 
@@ -32,8 +32,9 @@
 | user        | references | null: false, foreign_key: true |
 
 ### Association
+- has_one :users_items
 - has_one : user,through:users_items
-- belongs_to :user
+
 
 ## consumers テーブル
 
