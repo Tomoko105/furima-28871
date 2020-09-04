@@ -32,6 +32,7 @@
 | user        | references | null: false, foreign_key: true |
 
 ### Association
+- has_one :users_items
 - belongs_to :user
 
 
