@@ -6,8 +6,6 @@ RSpec.describe User, type: :model do
   end
 
   describe 'ユーザー新規登録' do
-    # it "nicknameとemail、passwordとpassword_confirmationが存在すれば登録できること" do
-    # end
 
     it 'nicknameが空では登録できないこと' do
       @user.nickname = nil
