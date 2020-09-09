@@ -1,24 +1,66 @@
-# README
+# テーブル設計
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## users テーブル
 
-Things you may want to cover:
+| Column         | Type    | Options      |
+| ---------------| --------| -------------|
+| nickname       | string  | null: false, |
+| email          | string  | null: false, |
+| password       | string  | null: false, |
+| firstname      | string  | null: false, |
+| lastname       | string  | null: false, |
+| kana_firstname | string  | null: false, |
+| kana_lastname  | string  | null: false, |
+| birthday       | date    | null: false, |
 
-* Ruby version
+### Association
+- has_many :users_items
+- has_many :items
 
-* System dependencies
+## items テーブル
 
-* Configuration
+| Column      | Type       | Options                        |
+| ------------| -----------| -------------------------------|
+| name        | string     | null: false,                   |
+| explation   | text       | null: false,                   |
+| price       | integer    | null: false,                   |
+| fee         | integer    | null: false,                   |
+| category_id | integer    | null: false,                   |
+| status_id   | integer    | null: false,                   |
+| pref_id     | integer    | null: false,                   |
+| ship_id     | integer    | null: false,                   |
+| user        | references | null: false, foreign_key: true |
 
-* Database creation
+### Association
+- has_one :users_items
+- belongs_to :user
 
-* Database initialization
 
-* How to run the test suite
+## consumers テーブル
 
-* Services (job queues, cache servers, search engines, etc.)
+| Column      | Type       | Options                        |
+| ------------| -----------| -------------------------------|
+| postalcode  | string     | null: false,                   |
+| pref_id     | integer    | null: false,                   |
+| city        | string     | null: false,                   |
+| address     | string     | null: false,                   |
+| buldname    | string     |                                |
+| tel         | string     | null: false,                   |
+| users_item  | references | null: false, foreign_key: true |
 
-* Deployment instructions
 
-* ...
+### Association
+- belongs_to:users_items
+
+
+## users_items テーブル
+
+| Column      | Type       | Options                        |
+| ------------| -----------| -------------------------------|
+| user        | references | null: false, foreign_key: true |
+| item        | references | null: false, foreign_key: true |
+
+### Association
+- belongs_to :user
+- belongs_to :item
+- has_one : consumer
