@@ -24,9 +24,9 @@
 | name        | string     | null: false,                   |
 | explation   | text       | null: false,                   |
 | price       | integer    | null: false,                   |
-| fee         | integer    | null: false,                   |
 | category_id | integer    | null: false,                   |
 | status_id   | integer    | null: false,                   |
+| burden_id   | integer    | null: false,                   |
 | pref_id     | integer    | null: false,                   |
 | ship_id     | integer    | null: false,                   |
 | user        | references | null: false, foreign_key: true |
