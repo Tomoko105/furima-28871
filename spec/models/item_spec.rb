@@ -12,15 +12,14 @@ RSpec.describe Item, type: :model do
       it '全ての情報が存在すれば登録できる' do
         expect(@item).to be_valid
       end
+    end
 
+    context '登録がうまくいかないとき' do
       it '紐づくユーザーが存在しないと保存できないこと' do
         @item.user_id = nil
         @item.valid?
         expect(@item.errors.full_messages).to include('User must exist')
       end
-    end
-
-    context '登録がうまくいかないとき' do
       it '画像は1枚必須であること' do
         @item.image = nil
         @item.valid?
@@ -54,7 +53,7 @@ RSpec.describe Item, type: :model do
       it '発送までの日数についての情報が必須であること' do
         @item.pref_id = 1
         @item.valid?
-        expect(@item.errors.full_messages).to include("Pref can't be blank")
+        expect(@item.errors.full_messages).to include("Pref must be other than 1")
       end
       it '価格についての情報が必須であること' do
         @item.price = nil
