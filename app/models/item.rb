@@ -14,8 +14,5 @@ class Item < ApplicationRecord
 
   validates :price, numericality: true, presence: true, format: /\A[0-9]+\z/
   validates_inclusion_of :price, in: 300..9_999_999
-  # validates :status_id, numericality: { other_than: 1 }
-  # validates :burden_id, numericality: { other_than: 1 }
-  # validates :pref_id, numericality: { other_than: 1 }
-  # validates :ship_id, numericality: { other_than: 1 }
+
 end

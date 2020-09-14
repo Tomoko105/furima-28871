@@ -52,7 +52,7 @@ RSpec.describe Item, type: :model do
         expect(@item.errors.full_messages).to include('Burden is not a number')
       end
       it '発送までの日数についての情報が必須であること' do
-        @item.pref_id = nil
+        @item.pref_id = 1
         @item.valid?
         expect(@item.errors.full_messages).to include("Pref can't be blank")
       end
@@ -61,8 +61,13 @@ RSpec.describe Item, type: :model do
         @item.valid?
         expect(@item.errors.full_messages).to include("Price can't be blank")
       end
-      it '価格の範囲が、¥300~¥9,999,999の間であること' do
+      it '価格の範囲が、¥300~¥9,999,999より小さいと登録不可であること' do
         @item.price = 100
+        @item.valid?
+        expect(@item.errors.full_messages).to include('Price is not included in the list')
+      end
+      it '価格の範囲が、¥300~¥9,999,999の間より大きいと登録不可あること' do
+        @item.price = 10000000
         @item.valid?
         expect(@item.errors.full_messages).to include('Price is not included in the list')
       end
