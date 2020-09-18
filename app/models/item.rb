@@ -14,5 +14,4 @@ class Item < ApplicationRecord
 
   validates :price, numericality: true, presence: true, format: /\A[0-9]+\z/
   validates_inclusion_of :price, in: 300..9_999_999
-
 end

@@ -1,9 +1,9 @@
 class ItemsController < ApplicationController
-  before_action :authenticate_user!, except:[:index,:show]
-  before_action :select,only:[:show,:edit,:update]
-  before_action :user_check,only:[:update]
+  before_action :authenticate_user!, except: [:index, :show]
+  before_action :select, only: [:show, :edit, :update]
+  before_action :user_check, only: [:update]
   def index
-    @items = Item.all.order("created_at DESC")
+    @items = Item.all.order('created_at DESC')
   end
 
   def new
@@ -36,16 +36,15 @@ class ItemsController < ApplicationController
 
   private
 
-   def select
-     @item = Item.find(params[:id])
-   end
+  def select
+    @item = Item.find(params[:id])
+  end
 
   def user_check
-    user_signed_in? && current_user.id == @item.user_id 
+    user_signed_in? && current_user.id == @item.user_id
   end
 
   def item_params
     params.require(:item).permit(:image, :name, :explation, :price, :category_id, :status_id, :burden_id, :pref_id, :ship_id).merge(user_id: current_user.id)
   end
 end
-

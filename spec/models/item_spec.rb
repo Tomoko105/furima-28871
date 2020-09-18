@@ -53,7 +53,7 @@ RSpec.describe Item, type: :model do
       it '発送までの日数についての情報が必須であること' do
         @item.pref_id = 1
         @item.valid?
-        expect(@item.errors.full_messages).to include("Pref must be other than 1")
+        expect(@item.errors.full_messages).to include('Pref must be other than 1')
       end
       it '価格についての情報が必須であること' do
         @item.price = nil
@@ -66,7 +66,7 @@ RSpec.describe Item, type: :model do
         expect(@item.errors.full_messages).to include('Price is not included in the list')
       end
       it '価格の範囲が、¥300~¥9,999,999の間より大きいと登録不可あること' do
-        @item.price = 10000000
+        @item.price = 10_000_000
         @item.valid?
         expect(@item.errors.full_messages).to include('Price is not included in the list')
       end
