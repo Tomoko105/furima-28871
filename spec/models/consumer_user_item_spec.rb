@@ -5,11 +5,10 @@ RSpec.describe ConsumerUserItem, type: :model do
     @user = FactoryBot.create(:user)
     @user2 = FactoryBot.create(:user)
     @item = FactoryBot.build(:item, user_id: @user.id)
-    #binding.pry
+    # binding.pry
     @item.image = fixture_file_upload('public/images/test_image.png')
     @user_item = FactoryBot.build(:user_item, user_id: @user2.id, item_id: @item.id)
     @consumer = FactoryBot.build(:consumer_user_item, user_id: @user2.id, item_id: @item.id)
-    
   end
 
   describe '購入情報登録' do
@@ -26,9 +25,9 @@ RSpec.describe ConsumerUserItem, type: :model do
         expect(@consumer.errors.full_messages).to include("Postalcode can't be blank")
       end
       it '郵便番号がハイフンが必要であること' do
-        @consumer.postalcode = 1234567
+        @consumer.postalcode = 1_234_567
         @consumer.valid?
-        expect(@consumer.errors.full_messages).to include("Postalcode is invalid. Include hyphen(-)")
+        expect(@consumer.errors.full_messages).to include('Postalcode is invalid. Include hyphen(-)')
       end
       it '都道府県が必須であること' do
         @consumer.pref_id = nil
@@ -49,17 +48,17 @@ RSpec.describe ConsumerUserItem, type: :model do
       it '電話番号が必須であること' do
         @consumer.tel = nil
         @consumer.valid?
-        expect(@consumer.errors.full_messages).to include("Tel only 11 digits can be entered")
+        expect(@consumer.errors.full_messages).to include('Tel only 11 digits can be entered')
       end
       it '電話番号はハイフン不要なこと' do
-        @consumer.tel = "090-1234-5678"
+        @consumer.tel = '090-1234-5678'
         @consumer.valid?
-        expect(@consumer.errors.full_messages).to include("Tel only 11 digits can be entered")
+        expect(@consumer.errors.full_messages).to include('Tel only 11 digits can be entered')
       end
       it '電話番号は12桁以上でないこと' do
-        @consumer.tel = "090123456789"
+        @consumer.tel = '090123456789'
         @consumer.valid?
-        expect(@consumer.errors.full_messages).to include("Tel only 11 digits can be entered")
+        expect(@consumer.errors.full_messages).to include('Tel only 11 digits can be entered')
       end
     end
   end

@@ -6,18 +6,17 @@ class ConsumersController < ApplicationController
   end
 
   def create
-      @consumer = ConsumerUserItem.new(consumer_params)
+    @consumer = ConsumerUserItem.new(consumer_params)
 
-      if @consumer.valid?
-        pay_item
-        @consumer.save
-        return redirect_to root_path
-      else
-        render 'index'
-    end
+    if @consumer.valid?
+      pay_item
+      @consumer.save
+      redirect_to root_path
+    else
+      render 'index'
+  end
   end
 
-  
   private
 
   def select
@@ -25,16 +24,15 @@ class ConsumersController < ApplicationController
   end
 
   def consumer_params
-    params.require(:consumer_user_item).permit(:postalcode, :pref_id, :city, :address, :buldname, :tel, :token).merge(token: params[:token], item_id:params[:item_id],user_id: current_user.id)
+    params.require(:consumer_user_item).permit(:postalcode, :pref_id, :city, :address, :buldname, :tel, :token).merge(token: params[:token], item_id: params[:item_id], user_id: current_user.id)
   end
 
   def pay_item
-    Payjp.api_key = ENV["PAYJP_SECRET_KEY"]
+    Payjp.api_key = ENV['PAYJP_SECRET_KEY']
     Payjp::Charge.create(
       amount: @item.price,
       card: consumer_params[:token],
-      currency:'jpy'
+      currency: 'jpy'
     )
   end
-
 end
