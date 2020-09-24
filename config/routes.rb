@@ -2,6 +2,11 @@ Rails.application.routes.draw do
   devise_for :users
 
   root to: 'items#index'
-  #get 'index#index'
-  resources :items
+  #resources :items
+  #resources :consumers
+
+  resources :items do
+    resources :consumers, only: [:index, :new, :create]
+  end
 end
+
