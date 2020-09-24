@@ -16,4 +16,3 @@ class ConsumerUserItem
   end
 end
 
-#  message:"only 7 digits can be entered"
