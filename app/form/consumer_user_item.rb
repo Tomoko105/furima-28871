@@ -6,7 +6,7 @@ class ConsumerUserItem
   with_options presence: true do
     validates :postalcode, format: {with: /\A[0-9]{3}-[0-9]{4}\z/, message: "is invalid. Include hyphen(-)"}
     validates :pref_id, numericality: { other_than: 1, message: "can't be blank" }
-    validates :tel, format:{with: /\A\d{11}\z/, message:"only 7 digits can be entered"}
+    validates :tel, format:{with: /\A\d{11}\z/, message:"only 11 digits can be entered"}
     validates :city, :address
     validates :token
   end
