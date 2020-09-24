@@ -1,7 +1,7 @@
 class Item < ApplicationRecord
   extend ActiveHash::Associations::ActiveRecordExtensions
-  has_one :users_items
-  belongs_to :user # ,optional: true
+  has_one :user_item
+  belongs_to :user, optional: true
 
   belongs_to_active_hash :category
   belongs_to_active_hash :status

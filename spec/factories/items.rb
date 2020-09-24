@@ -1,6 +1,5 @@
 FactoryBot.define do
   factory :item do
-    # image{}
     name { '商品名' }
     explation { '商品の説明です' }
     price { '1000' }
@@ -9,5 +8,6 @@ FactoryBot.define do
     burden_id { 2 }
     pref_id { 2 }
     ship_id { 2 }
+    association :user
   end
 end
