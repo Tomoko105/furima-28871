@@ -26,7 +26,10 @@ class ConsumersController < ApplicationController
   end
 
   def user_check
-    redirect_to root_path if user_signed_in? && current_user.id != @item.user_id
+    if current_user.id == @item.user_id
+      redirect_to root_path
+    else
+    end
   end
 
   def item_check
