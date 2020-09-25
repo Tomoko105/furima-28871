@@ -28,25 +28,25 @@
     </div>
 
     <%# ログインしているユーザと出品しているユーザが同一人物である時、商品の「編集」「削除」を表示する分岐の条件式 %>
-    <% if user_signed_in? && current_user.id == @item.user_id %>
-
-      <%= link_to '商品の編集', edit_item_path, method: :get, class: "item-red-btn" %>
-      <p class='or-text'>or</p>
-      <%= link_to '削除', item_path(@item.id), method: :delete, class:'item-destroy' %>
-    <% else %>
-    <%# 商品が売れていない場合はこちらを表示しましょう %>
-      <% if @item.user_item.nil? %>
-
-        <%= link_to '購入画面に進む', item_consumers_path(@item.id) ,class:"item-red-btn"%>
+      <% if user_signed_in? && current_user.id == @item.user_id %>
+        <% if @item.user_item.nil? %>
+          <%= link_to '商品の編集', edit_item_path, method: :get, class: "item-red-btn" %>
+          <p class='or-text'>or</p>
+          <%= link_to '削除', item_path(@item.id), method: :delete, class:'item-destroy' %>
+        <% else %>
+        <% end %>
       <% else %>
-      <% end %>
-    <%# //商品が売れていない場合はこちらを表示しましょう %>
-
-    <% end %>  
+        <%# 商品が売れていない場合はこちらを表示しましょう %>
+        <% if @item.user_item.nil? %>
+          <%= link_to '購入画面に進む', item_consumers_path(@item.id) ,class:"item-red-btn"%>
+        <% else %>
+        <% end %>
+        <%# //商品が売れていない場合はこちらを表示しましょう %>
+      <% end %>  
     <%# // ログインしているユーザと出品しているユーザが同一人物である時、商品の「編集」「削除」を表示する分岐の条件式 %>
 
     <div class="item-explain-box">
-      <span><%= "商品説明" %></span>
+      <span><%= @item.explation %></span>
     </div>
     <table class="detail-table">
       <tbody>
