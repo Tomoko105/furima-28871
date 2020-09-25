@@ -5,7 +5,7 @@ RSpec.describe ConsumerUserItem, type: :model do
     @user = FactoryBot.create(:user)
     @user2 = FactoryBot.create(:user)
     @item = FactoryBot.build(:item, user_id: @user.id)
-    # binding.pry
+
     @item.image = fixture_file_upload('public/images/test_image.png')
     @user_item = FactoryBot.build(:user_item, user_id: @user2.id, item_id: @item.id)
     @consumer = FactoryBot.build(:consumer_user_item, user_id: @user2.id, item_id: @item.id)
